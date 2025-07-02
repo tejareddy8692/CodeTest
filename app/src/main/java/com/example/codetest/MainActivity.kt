@@ -1,6 +1,7 @@
 package com.example.codetest
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -11,14 +12,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.fragment.app.FragmentActivity
-import com.example.codetest.presentation.MainScreen
+import androidx.navigation.compose.rememberNavController
+import com.example.codetest.presentation.AppNavGraph
 import com.example.codetest.presentation.MainViewModel
 import com.example.codetest.ui.theme.CodeTestTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : FragmentActivity() {
+class MainActivity : ComponentActivity() {
     private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +31,8 @@ class MainActivity : FragmentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen(mainViewModel, Modifier.fillMaxSize())
+                    val navController = rememberNavController()
+                    AppNavGraph(navController = navController, viewModel = mainViewModel)
                 }
             }
         }

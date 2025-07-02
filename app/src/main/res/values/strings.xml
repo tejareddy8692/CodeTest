@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CodeTest</string>
+    <string name="animals">Animals</string>
 </resources>
